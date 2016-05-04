@@ -1,4 +1,3 @@
-console.log('hi');
 
 function loadData() {
 
@@ -13,8 +12,6 @@ function loadData() {
     $nytElem.text("");
 
     // load streetview
-
-    console.log('here');
 
     var streetStr = $('#street').val();
     var cityStr = $('#city').val();
@@ -31,15 +28,16 @@ function loadData() {
     $.getJSON(timesURL, function(data) {
         $nytHeaderElem.text('New York Times Articles about ' + cityStr);
         articles = data.response.docs;
-        console.log(articles);
         for (var i = 0; i < articles.length; i++) {
             var article = articles[i];
             $nytElem.append('<li class="article">' +
                 '<a href="' + article.web_url + '">' + article.headline.main + '</a>' +
                 '<p>' + article.snippet + '</p>' +
                 '</li>');
-        }
-    });
+        };
+    }).fail(function(e){
+                $nytHeaderElem.text('New York Times Articles Failed');
+            });
     return false;
 }
 
