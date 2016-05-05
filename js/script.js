@@ -59,6 +59,13 @@ function loadData() {
             };
             clearTimeout(wikiFail);
         });
+
+    var cooperURL = 'https://api.collection.cooperhewitt.org/rest/?method=cooperhewitt.search.collection&access_token=2c50ff5d0eafe7ae7d06caff7bbcbbcb
+&query=' + cityStr + '&page=1&per_page=100';
+    $.getJSON(cooperURL, function(data){
+        $cooperh-header.text('Pretty things made in' + cityStr + 'from the Cooper Hewitt.');
+    });
+
     return false;
 }
 
